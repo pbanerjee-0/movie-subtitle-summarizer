@@ -13,7 +13,7 @@ This is the traditional (n-gram) baseline for a group NLP project. Subtitle down
 
 ### spaCy usage
 
-spaCy (`en_core_web_sm`) is used for [tokenization / sentence splitting]. 
+spaCy (`en_core_web_sm`) is used for [tokenization / sentence splitting]. Optional extension: POS tags to restrict scoring to nouns, proper nouns, and verbs, so filler words don't add weight. [Say whether this is implemented or future work.]
 
 ## Baselines and comparisons
 
@@ -32,14 +32,11 @@ All systems produce summaries of the same fixed length.
 .
 ├── README.md
 ├── requirements.txt
-├── [summarizer.py]        # unit splitting, TF-IDF scoring, summary selection
-├── [baselines.py]         # random and lead baselines
-├── [evaluate.py]          # ROUGE evaluation and results table
-├── [top_bigrams.py]       # high-weight bigram output
-├── outputs/               # sample generated summaries
+├── [tf-idf-summarizer.py]        # unit splitting, TF-IDF scoring, summary selection
+├── [evaluation.py]          # ROUGE evaluation and results table
 └── data/                  # NOT committed (see below)
     ├── transcripts/       # subtitle .txt files
-    └── references.csv     # title, filename, reference_summary
+    └── ref_summaries     # title, filename, reference_summary
 ```
 
 ## Software
