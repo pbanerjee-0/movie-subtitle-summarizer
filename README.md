@@ -13,7 +13,7 @@ This is the traditional (n-gram) baseline for a group NLP project. Subtitle down
 
 ### spaCy usage
 
-spaCy (`en_core_web_sm`) is used for [tokenization / sentence splitting]. Optional extension: POS tags to restrict scoring to nouns, proper nouns, and verbs, so filler words don't add weight. [Say whether this is implemented or future work.]
+spaCy (`en_core_web_sm`) is used for [tokenization / sentence splitting]. 
 
 ## Baselines and comparisons
 
