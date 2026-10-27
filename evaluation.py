@@ -10,10 +10,15 @@ def evaluate_summarizer(generated_text, reference_text):
     return scores
 
 if __name__ == "__main__":
-    # Example strings (replace  with actual model output and reference text)
-    generated_summary = "Agatha Harkness. You have betrayed your coven. What if we summon a backup Green Witch?"
-    reference_summary = "Agatha is accused of betraying her coven by the Salem Seven, prompting the group to consider summoning a backup Green Witch."
+    # Read TF-IDF generated summary file
+    with open('data/output_summaries/black_widow_2021_summary.txt', 'r', encoding='utf-8') as f:
+        generated_summary = f.read().strip()
+        
+    # Read reference summary file
+    with open('data/ref_summaries/black_widow_2021_original.txt', 'r', encoding='utf-8') as f:
+        reference_summary = f.read().strip()
     
+    # Score and evaluate with ROUGE
     results = evaluate_summarizer(generated_summary, reference_summary)
     
     print("--- Baseline ROUGE Evaluation Results ---")

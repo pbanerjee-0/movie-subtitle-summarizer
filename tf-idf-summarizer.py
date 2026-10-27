@@ -8,6 +8,7 @@ on preprocessed subtitle text files.
 import pandas as pd
 import spacy
 import numpy as np
+import os
 from rouge_score import rouge_scorer
 from sklearn.feature_extraction.text import TfidfVectorizer
 pd.set_option('display.max_colwidth', None)
@@ -43,9 +44,7 @@ def tf_idf_summarize(matrix, subtitle_lines):
     summary_sentences = [subtitle_lines[idx] for idx, score in top_ranked_chronological]
     generated_summary = " ".join(summary_sentences)
 
-    print("\n--- Generated Summary ---")
-    print(generated_summary)
-
+    return(generated_summary)
 
 
 bw_test = read_subtitle('data/subtitles/black_widow_2021.txt')
@@ -57,6 +56,16 @@ vectorizer = TfidfVectorizer(tokenizer=spaCy_text_tokenize, token_pattern=None, 
 tfidf_matrix = vectorizer.fit_transform(bw_test)
 print(tfidf_matrix.shape)
 
-tf_idf_summarize(tfidf_matrix, bw_test)
-
 # print(vectorizer.get_feature_names_out()) 
+
+
+summary=tf_idf_summarize(tfidf_matrix, bw_test)
+
+output_dir = "data/output_summaries"
+os.makedirs(output_dir, exist_ok=True) # Creates the folder if it doesn't exist
+
+output_file = os.path.join(output_dir, "black_widow_2021_summary.txt")
+
+with open(output_file, "w", encoding="utf-8") as f:
+    f.write(summary)
+
